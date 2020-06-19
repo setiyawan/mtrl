@@ -1,0 +1,136 @@
+<?php $this->view('side/header'); ?>
+
+<body class="fix-header fix-sidebar card-no-border">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        
+        <?php $this->view('navbar/top_navbar'); ?>
+        
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        
+        <?php $this->view('navbar/left_navbar'); ?>
+
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <?php $this->view('filter/'.$filter['filter_search']); ?>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <!-- Row -->
+                
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="table-responsive">
+                                    <table class="table myTable">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Tanggal</th>
+                                                <th>Pemasukan (Rp)</th>
+                                                <th>Pengeluaran (Rp)</th>
+                                                <th>Balance (Rp)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $total_income = 0;
+                                            $total_expense = 0;
+                                            $balance = 0;
+                                            foreach ($report as $key => $value) { 
+                                                $total_income += $value['total_income'];
+                                                $total_expense += $value['total_expense'];
+                                                $balance = $balance + $value['total_income'] - $value['total_expense'];
+                                            ?>
+                                            <tr>
+                                                <td> <?= $key+1 ?> </td>
+                                                <td> <?= $this->Converter->to_indonesia_date_full($value['date']) ?> </td>
+                                                <td> <?= $this->Converter->to_rupiah($value['total_income']) ?> </td>
+                                                <td> <?= $this->Converter->to_rupiah($value['total_expense']) ?> </td>
+                                                <td> <?= $this->Converter->to_rupiah($balance) ?> </td>
+                                            </tr>
+                                            <?php } ?>
+                                            <thead>
+                                            <tr>
+                                                <td>#</td>
+                                                <td class="">Jumlah</td>
+                                                <td class=""><?= $this->Converter->to_rupiah($total_income) ?></td>
+                                                <td class=""><?= $this->Converter->to_rupiah($total_expense) ?></td>
+                                                <td class=""><?= $this->Converter->to_rupiah($balance) ?></td>
+                                            </tr>
+                                        </thead>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row -->
+                <!-- Row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <?php $this->view('navbar/buttom_navbar'); ?>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+
+    <?php $this->view('side/footer'); ?>
+
+</body>
+
+</html>
