@@ -22,7 +22,7 @@
 <script src="<?= base_url()?>asset/plugins/d3/d3.min.js"></script>
 <script src="<?= base_url()?>asset/plugins/c3-master/c3.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script src="<?= base_url()?>asset/js/select2.min.js"></script>
 
 <?php if (!empty($add_js)) { ?>
 <script src="<?php echo base_url() ?>asset/js/<?= $add_js ?>.js"></script>
