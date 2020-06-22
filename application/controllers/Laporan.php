@@ -77,4 +77,34 @@ class Laporan extends My_Controller {
 
 		$this->load->view('report', $data);
 	}
+
+	public function cetak() {
+		$get = $this->input->get();
+
+		if ($get['type'] == 'daily') {
+			$filter = array(
+	    		'date' => $this->Ternary->isempty_value($get['date'], date('Y-m-d')),
+		    );
+
+		    $data = array(
+		    	'report_title' => 'Laporan Harian',
+		    	'report_time' => $this->Converter->to_indonesia_date_full($filter['date']),
+		    	'report' => $this->ReportModel->get_daily_report($filter)
+		    );
+		} else if ($get['type'] == 'monthly') {
+			$filter = array(
+	    		'month' => $this->Ternary->isempty_value($get['month'], $this->TimeConstant->get_current_month()),
+	    		'year' => $this->Ternary->isempty_value($get['year'], $this->TimeConstant->get_current_year()),
+		    );
+
+		    $data = array(
+		    	'report_title' => 'Laporan Bulanan',
+		    	'report_time' => $this->Converter->to_indonesia_full_month((int)$filter['month']) . ' ' . $filter['year'],
+		    	'report' => $this->ReportModel->get_monthly_report($filter)
+		    );
+		}
+
+		$data['user_full_name'] = $this->get_session_by_id('full_name');
+		$this->load->view('report_print', $data);
+	}
 }
