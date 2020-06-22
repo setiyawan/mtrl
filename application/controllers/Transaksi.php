@@ -30,6 +30,13 @@ class Transaksi extends My_Controller {
     
     // GET ACTION
     public function index() {
+    	$get = $this->input->get();
+
+    	$filter = array(
+    		'status' => 1,
+    		'transaction_date' => $this->Ternary->isempty_value($get['date'], date('Y-m-d')),
+    	);
+
     	$data = array(
     		'active_page' => 'transaction',
     		'page_title' => 'Transaksi',
@@ -38,6 +45,7 @@ class Transaksi extends My_Controller {
 			'parent_page_url' => base_url(),
     		'transaction' => $this->TransactionModel->get_transaction_dashboard($filter)
     	);
+    	
 		$this->load->view('transaction', $data);
 	}
 
@@ -90,7 +98,7 @@ class Transaksi extends My_Controller {
 		}
 
 		$data = array(
-			'user_full_name' => 'Agust',
+			'user_full_name' => $this->get_session_by_id('full_name'),
 			'transaction' => $this->TransactionModel->get_transaction_invoice($filter)[0]
 		);
 
@@ -113,7 +121,8 @@ class Transaksi extends My_Controller {
 			'volume' => $post['volume'],
 			'item_price' => $post['item_price'],
 			'total_price' => $post['total_price'],
-			'create_by' => 1
+			'is_paid_off' => $post['is_paid_off'] == "on" ? 1 : 0,
+			'create_by' => $this->get_userid()
 		);
 
 		$result = $this->TransactionModel->add_transaction($data);
@@ -130,6 +139,8 @@ class Transaksi extends My_Controller {
 		
 		$post = $this->input->post();
 		$transaction_id = $post['transaction_id'];
+		$is_paid_off = $post['is_paid_off'] == "on" ? 1 : 0;
+		
 		$data = array(
 			'vehicle_id' => $post['vehicle_id'],
 			'receiver_name' => $post['receiver_name'],
@@ -139,9 +150,22 @@ class Transaksi extends My_Controller {
 			'volume' => $post['volume'],
 			'item_price' => $post['item_price'],
 			'total_price' => $post['total_price'],
-			'update_by' => 2,
+			'is_paid_off' => $is_paid_off,
+			'update_by' => $this->get_userid(),
 			'update_time' => $this->TimeConstant->get_current_timestamp()
 		);
+
+		if ($is_paid_off == 1) {
+			$filter = array (
+				'transaction_id' => $transaction_id,
+				'status' => 1
+			);
+
+			$prev_transaction = $this->TransactionModel->get_transaction($filter)[0];
+			if ($prev_transaction['is_paid_off'] == 0 ) {
+				$data['transaction_time'] = $this->TimeConstant->get_current_timestamp();
+			}
+		}
 
 		$result = $this->TransactionModel->update_transaction($data, $transaction_id);
 		if ($result) {
@@ -149,24 +173,6 @@ class Transaksi extends My_Controller {
 		}
 
 		redirect(base_url().'transaksi/detail?id='.$transaction_id);
-	}
-
-	public function delete() {
-		$this->validate_referer();
-		
-		$transaction_id = $this->input->get('id', TRUE);
-		$data = array(
-			'status' => 3,
-			'update_by' => 2,
-			'update_time' => $this->TimeConstant->get_current_timestamp()
-		);
-
-		$result = $this->TransactionModel->update_transaction($data, $transaction_id);
-		if ($result) {
-			$this->set_alert('success', 'Data Transaksi berhasil dihapus');
-		}
-
-		redirect(base_url().'transaksi');
 	}
 
 	function generate_invoice_code() {

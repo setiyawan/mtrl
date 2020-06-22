@@ -88,7 +88,7 @@ class Kendaraan extends My_Controller {
 			'height' => $post['height'],
 			'owner_name' => $post['owner_name'],
 			'status' => 1,
-			'create_by' => 1
+			'create_by' => $this->get_userid()
 		);
 
 		$result = $this->VehicleModel->add_vehicle($data);
@@ -114,7 +114,7 @@ class Kendaraan extends My_Controller {
 			'height' => $post['height'],
 			'owner_name' => $post['owner_name'],
 			'status' => 1,
-			'update_by' => 1,
+			'update_by' => $this->get_userid(),
 			'update_time' => $this->TimeConstant->get_current_timestamp()
 		);
 
@@ -132,7 +132,7 @@ class Kendaraan extends My_Controller {
 		$vehicle_id = $this->input->get('id', TRUE);
 		$data = array(
 			'status' => 3,
-			'update_by' => 2,
+			'update_by' => $this->get_userid(),
 			'update_time' => $this->TimeConstant->get_current_timestamp()
 		);
 

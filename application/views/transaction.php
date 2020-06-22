@@ -41,18 +41,25 @@
                 <!-- ============================================================== -->
                 <!-- Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
+                <form>
                 <div class="row page-titles">
-                    <div class="col-md-8 col-8 align-self-center">
-                        <h3 class="text-themecolor"><?= $page_title ?></h3>
+                    <div class="col-md-9 col-9 align-self-center">
+                        <h3 class="text-themecolor"><?= $page_title ?>
+                            <button type="button" class="btn btn-info" data-toggle="tooltip" title="Tambah data Transaksi" onclick="document.location.href='<?= base_url()?>transaksi/tambah'"><i class="mdi mdi-plus"></i>Tambah</button>
+                        </h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<?= $parent_page_url ?>"><?= $parent_page ?></a></li>
                             <li class="breadcrumb-item active"><?= $page_child ?></li>
                         </ol>
                     </div>
-                    <div class="col-md-4 col-4 align-self-center">
-                    	<button class="btn btn-info pull-right" data-toggle="tooltip" title="Tambah data Transaksi" onclick="document.location.href='<?= base_url()?>transaksi/tambah'"><i class="mdi mdi-plus"></i>Transaksi Baru</button>
+                    <div class="col-md-2 col-2 align-self-center">
+                        <input type="date" name="date" class="form-control form-control-line" value="<?= $this->Ternary->isset_value($filter['date'], date("Y-m-d"))?>">
+                    </div>
+                    <div class="col-md-1 col-1 align-self-center">
+                        <button type="submit" class="btn waves-effect btn-rounded btn-warning"> <i class="ti-search"></i> Cari </button>
                     </div>
                 </div>
+                </form>
                 <!-- ============================================================== -->
                 <!-- End Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
@@ -70,12 +77,13 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Tanggal Transaksi</th>
+                                                <th>Tgl Transaksi</th>
                                                 <th>No Nota</th>
                                                 <th>Jenis Material</th>
                                                 <th>Nopol Kendaraan</th>
                                                 <th>Penerima</th>
                                                 <th>Total Harga</th>
+                                                <th>Status</th>
                                                 <th>Opsi</th>
                                             </tr>
                                         </thead>
@@ -89,10 +97,10 @@
                                                 <td> <?= $value['license_plate'] ?> </td>
                                                 <td> <?= $value['receiver_name'] ?> </td>
                                                 <td> <?= $this->Converter->to_rupiah($value['total_price']) ?> </td>
-                                                <td width="160px">
-                                                    <button class="btn btn-success" data-toggle="tooltip" title="Cetak invoice" onclick="window.open('<?= base_url()?>transaksi/invoice?id=<?= $value['transaction_id'] ?>')"><i class="mdi mdi-printer"></i></button>
+                                                <td> <?= $value['is_paid_off'] == 1 ? 'Lunas' : 'Belum Lunas' ?> </td>
+                                                <td width="110px">
                                                 	<button class="btn btn-warning" data-toggle="tooltip" title="Perbarui data transaksi" onclick="document.location.href='<?= base_url()?>transaksi/detail?id=<?= $value['transaction_id'] ?>'"><i class="mdi mdi-pencil"></i></button>
-                                                	<button class="btn btn-danger" data-toggle="tooltip" title="Hapus data transaksi" onclick="if (!confirm('Kamu yakin ingin hapus data transaksi ini?')) return; document.location.href='<?= base_url()?>transaksi/delete?id=<?= $value['transaction_id'] ?>'"><i class="mdi mdi-delete"></i></button>
+                                                    <button class="btn btn-success" data-toggle="tooltip" title="Cetak invoice" onclick="window.open('<?= base_url()?>transaksi/invoice?id=<?= $value['transaction_id'] ?>')"><i class="mdi mdi-printer"></i></button>
                                                 </td>
                                             </tr>
                                             <?php } ?>

@@ -49,7 +49,7 @@
                     <div class="col-md-12">
                         <div class="card card-body printableArea">
                             <h3>
-                                #<?= $transaction['invoice_code'] ?> &nbsp <i class="fa fa-print" onclick="window.print()" style="cursor: pointer;"> </i> 
+                                #<?= $transaction['invoice_code'] ?> &nbsp <i class="fa fa-print" onclick="window.print()" id="print-id" data-toggle="tooltip" title="Click disini untuk cetak invoice" style="cursor: pointer;"> </i> 
                                 <span class="pull-right">
                                     <p class="text-muted" style="text-align: right; font-size: 12px; margin-top: -10px;"> <i class="fa fa-calendar"> </i> Caruban, <?= $this->Converter->to_indonesia_date_full($transaction['transaction_time']) ?></p>   
                                 </span>
@@ -155,6 +155,9 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
+    <script src="<?= base_url()?>asset/plugins/jquery/jquery.min.js"></script>
+    <script src="<?= base_url()?>asset/plugins/bootstrap/js/tether.min.js"></script>
+    <script src="<?= base_url()?>asset/plugins/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

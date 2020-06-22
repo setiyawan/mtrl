@@ -43,14 +43,13 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-8 col-8 align-self-center">
-                        <h3 class="text-themecolor"><?= $page_title ?></h3>
+                        <h3 class="text-themecolor"><?= $page_title ?>
+                    	   <button type="button" class="btn btn-info" data-toggle="tooltip" title="Tambah data material" onclick="document.location.href='<?= base_url()?>material/tambah'"><i class="mdi mdi-plus"></i>Tambah</button>
+                        </h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<?= $parent_page_url ?>"><?= $parent_page ?></a></li>
                             <li class="breadcrumb-item active"><?= $page_child ?></li>
                         </ol>
-                    </div>
-                    <div class="col-md-4 col-4 align-self-center">
-                    	<button class="btn btn-info pull-right" data-toggle="tooltip" title="Tambah data material" onclick="document.location.href='<?= base_url()?>material/tambah'"><i class="mdi mdi-plus"></i>Tambah Material</button>
                     </div>
                 </div>
                 <!-- ============================================================== -->

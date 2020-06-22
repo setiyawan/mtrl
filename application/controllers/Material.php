@@ -85,7 +85,7 @@ class Material extends My_Controller {
 			'price' => $post['price'],
 			'description' => $post['description'],
 			'status' => 1,
-			'create_by' => 1
+			'create_by' => $this->get_userid()
 		);
 
 		$result = $this->MaterialModel->add_material($data);
@@ -107,7 +107,7 @@ class Material extends My_Controller {
 			'material_code' => $post['material_code'],
 			'price' => $post['price'],
 			'description' => $post['description'],
-			'update_by' => 2,
+			'update_by' => $this->get_userid(),
 			'update_time' => $this->TimeConstant->get_current_timestamp()
 		);
 
@@ -125,7 +125,7 @@ class Material extends My_Controller {
 		$material_id = $this->input->get('id', TRUE);
 		$data = array(
 			'status' => 3,
-			'update_by' => 2,
+			'update_by' => $this->get_userid(),
 			'update_time' => $this->TimeConstant->get_current_timestamp()
 		);
 

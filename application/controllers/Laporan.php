@@ -37,7 +37,7 @@ class Laporan extends My_Controller {
 		$get = $this->input->get();
 
     	$filter = array(
-    		'date' => $this->Ternary->isempty_value($get['date'], $this->TimeConstant->get_current_month()),
+    		'date' => $this->Ternary->isempty_value($get['date'], date('Y-m-d')),
 	    	'filter_search' => 'daily_report'
 	    );
 

@@ -61,6 +61,7 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Tanggal</th>
+                                                <th>Keterangan</th>
                                                 <th>Pemasukan (Rp)</th>
                                                 <th>Pengeluaran (Rp)</th>
                                                 <th>Balance (Rp)</th>
@@ -71,14 +72,24 @@
                                             $total_income = 0;
                                             $total_expense = 0;
                                             $balance = 0;
+                                            
                                             foreach ($report as $key => $value) { 
+                                                $additional_info = '';
+                                                $value['total_income'] = $value['cashflow_type'] == 1 ? $value['cashflow_amount'] : 0;
+                                                $value['total_expense'] = $value['cashflow_type'] == 2 ? $value['cashflow_amount'] : 0;
+
                                                 $total_income += $value['total_income'];
                                                 $total_expense += $value['total_expense'];
                                                 $balance = $balance + $value['total_income'] - $value['total_expense'];
+                                                
+                                                if ($value['volume'] > 0) {
+                                                    $additional_info = ' (' . $value['volume'] . ' m<sup>3</sup>)';
+                                                }
                                             ?>
                                             <tr>
                                                 <td> <?= $key+1 ?> </td>
                                                 <td> <?= $this->Converter->to_indonesia_date_full($value['date']) ?> </td>
+                                                <td> <?= $value['description'] . $additional_info ?> </td>
                                                 <td> <?= $this->Converter->to_rupiah($value['total_income']) ?> </td>
                                                 <td> <?= $this->Converter->to_rupiah($value['total_expense']) ?> </td>
                                                 <td> <?= $this->Converter->to_rupiah($balance) ?> </td>
@@ -87,7 +98,7 @@
                                             <thead>
                                             <tr>
                                                 <td>#</td>
-                                                <td class="">Jumlah</td>
+                                                <td class="" colspan="2">Jumlah</td>
                                                 <td class=""><?= $this->Converter->to_rupiah($total_income) ?></td>
                                                 <td class=""><?= $this->Converter->to_rupiah($total_expense) ?></td>
                                                 <td class=""><?= $this->Converter->to_rupiah($balance) ?></td>

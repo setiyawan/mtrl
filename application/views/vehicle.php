@@ -43,14 +43,13 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-8 col-8 align-self-center">
-                        <h3 class="text-themecolor"><?= $page_title ?></h3>
+                        <h3 class="text-themecolor"><?= $page_title ?>
+                    	   <button type="button" class="btn btn-info" data-toggle="tooltip" title="Tambah data Kendaraan" onclick="document.location.href='<?= base_url()?>kendaraan/tambah'"><i class="mdi mdi-plus"></i>Tambah</button> 
+                        </h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<?= $parent_page_url ?>"><?= $parent_page ?></a></li>
                             <li class="breadcrumb-item active"><?= $page_child ?></li>
                         </ol>
-                    </div>
-                    <div class="col-md-4 col-4 align-self-center">
-                    	<button class="btn btn-info pull-right" data-toggle="tooltip" title="Tambah data Kendaraan" onclick="document.location.href='<?= base_url()?>kendaraan/tambah'"><i class="mdi mdi-plus"></i>Tambah Kendaraan</button>
                     </div>
                 </div>
                 <!-- ============================================================== -->
@@ -89,8 +88,8 @@
                                                 <td> <?= $this->Converter->volume_cm3_to_m3($value['length'] * $value['width'] * $value['height']) ?> m<sup>3</sup></td>
                                                 <td> <?= $value['owner_name'] ?> </td>
                                                 <td width="120px">
-                                                	<button class="btn btn-warning" data-toggle="tooltip" title="Perbarui data vehicle" onclick="document.location.href='<?= base_url()?>kendaraan/detail?id=<?= $value["vehicle_id"] ?>'"><i class="mdi mdi-pencil"></i></button>
-                                                	<button class="btn btn-danger" data-toggle="tooltip" title="Hapus data vehicle" onclick="if (!confirm('Kamu yakin ingin hapus data kendaraan ini?')) return; document.location.href='<?= base_url()?>kendaraan/delete?id=<?= $value["vehicle_id"] ?>'"><i class="mdi mdi-delete"></i></button>
+                                                	<button class="btn btn-warning" data-toggle="tooltip" title="Perbarui data kendaraan" onclick="document.location.href='<?= base_url()?>kendaraan/detail?id=<?= $value["vehicle_id"] ?>'"><i class="mdi mdi-pencil"></i></button>
+                                                	<button class="btn btn-danger" data-toggle="tooltip" title="Hapus data kendaraan" onclick="if (!confirm('Kamu yakin ingin hapus data kendaraan ini?')) return; document.location.href='<?= base_url()?>kendaraan/delete?id=<?= $value["vehicle_id"] ?>'"><i class="mdi mdi-delete"></i></button>
                                                 </td>
                                             </tr>
                                             <?php } ?>
