@@ -109,6 +109,7 @@
                                 <div class="col-6">
                                     <div class="pull-right mt-2 text-right">
                                         <h3><b>Total :</b> <?= $this->Converter->to_rupiah($transaction['total_price']) ?></h3>
+                                        <h4 class="text-muted"> <?= $transaction['is_paid_off'] ? 'L U N A S' : 'B E L U M &nbsp L U N A S' ?> </h4>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
