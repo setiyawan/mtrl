@@ -41,7 +41,7 @@
                         <ul class="dropdown-user list-style-none">
                             <li>
                                 <div class="dw-user-box p-3 d-flex">
-                                    <div class="u-img"><img src="<?= base_url()?>asset/images/users/1.png" alt="user" class="rounded" width="80"></div>
+                                    <div class="u-img"><img src="<?= base_url()?>asset/images/users/<?= $this->Ternary->isset_value($this->session->userdata('gender'), '1') ?>.png" alt="user" class="rounded" width="80"></div>
                                     <div class="u-text ml-2">
                                         <h4 class="mb-0"><?= $this->session->userdata('full_name') ?></h4>
                                         <p class="text-muted mb-1 font-14"></p>
