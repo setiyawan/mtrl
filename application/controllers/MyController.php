@@ -37,7 +37,7 @@ class My_Controller extends CI_Controller {
         $this->load->model('MaterialModel');
         $this->load->model('VehicleModel');
         $this->load->model('TransactionModel');
-        $this->load->model('ExpenseModel');
+        $this->load->model('CashflowModel');
         $this->load->model('ReportModel');
 
         ini_set('display_error','off');
@@ -54,6 +54,10 @@ class My_Controller extends CI_Controller {
 		if (!$this->is_logged_in()) {
 			redirect(base_url().'user/login');
 		}
+	}
+
+	protected function get_userid() {
+		return $this->session->userdata('user_id');
 	}
 
 	protected function get_session_by_id($id) {

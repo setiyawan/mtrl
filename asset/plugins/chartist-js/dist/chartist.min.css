@@ -22,7 +22,8 @@
 	fill: rgba(0, 0, 0, .4);
 	color: rgba(0, 0, 0, .4);
 	font-size: .75rem;
-	line-height: 1
+	line-height: 1;
+  	margin-left: 10px;
 }
 
 .ct-chart-bar .ct-label,
@@ -59,7 +60,7 @@
 	justify-content: flex-start;
 	text-align: left;
 	text-anchor: start;
-	margin-left: -15px !important
+	margin-left: -20px !important
 }
 
 .ct-label.ct-vertical.ct-start {

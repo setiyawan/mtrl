@@ -35,6 +35,9 @@ class Dashboard extends My_Controller {
     		'transaction_year' => $this->TimeConstant->get_current_year(),
     		'vehicle_expired_month' => $this->TimeConstant->get_current_month(),
     		'vehicle_expired_year' => $this->TimeConstant->get_current_year(),
+    		'cashflow_month' => $this->TimeConstant->get_current_month(),
+    		'cashflow_year' => $this->TimeConstant->get_current_year(),
+    		'is_paid_off' => 1,
     		'status' => 1
     	);
 
@@ -44,12 +47,21 @@ class Dashboard extends My_Controller {
     	$total_material = 0;
 
     	$transaction = $this->TransactionModel->get_transaction_dashboard($filter);
+    	$cashflow = $this->CashflowModel->get_cashflow($filter);
     	$expired_vehicle = $this->VehicleModel->get_vehicle_count($filter);
 
     	foreach ($transaction as $key => $value) {
     		$total_income += $value['total_price'];
     		$total_trx += 1;
     		$total_material += $value['volume'];
+    	}
+
+    	foreach ($cashflow as $key => $value) {
+    		if ($value['cashflow_type'] == "1") {
+    			$total_income += $value['amount'];
+    		} elseif ($value['cashflow_type'] == 2) {
+    			$total_income -= $value['amount'];
+    		}
     	}
 
     	$data = array(

@@ -75,15 +75,19 @@
                                     <input type="hidden" name="item_price" id="item-price-id" value="<?= $this->Ternary->isset_value($transaction['item_price'])?>">
 
                                     <div style="display: flex;">
-                                    <div class="form-group col-md-4 col-xlg-4">
-                                        <label>No Nota</label>
-                                        <input type="text" name="invoice_code" placeholder="Otomatis" disabled required class="form-control form-control-line" value="<?= $this->Ternary->isset_value($transaction['invoice_code'])?>">
-                                    </div>
-                                    <div class="form-group col-md-4 col-xlg-4">
-                                        <label>Tgl Pembelian</label>
-                                        <input type="datetime-local" required  disabled class="form-control form-control-line" value="<?= $this->Ternary->isset_value($transaction['transaction_time'], date("Y-m-d H:i:s"))?>">
-                                        <input type="hidden" name="transaction_time" value="<?= $this->Ternary->isset_value($transaction['transaction_time'], date("Y-m-d H:i:s"))?>">
-                                    </div>
+                                        <div class="form-group col-md-4 col-xlg-4">
+                                            <label>No Nota</label>
+                                            <input type="text" name="invoice_code" placeholder="Otomatis" disabled required class="form-control form-control-line" value="<?= $this->Ternary->isset_value($transaction['invoice_code'])?>">
+                                        </div>
+                                        <div class="form-group col-md-4 col-xlg-4">
+                                            <label>Tgl Transaksi</label>
+                                            <input type="datetime-local" required  disabled class="form-control form-control-line" value="<?= $this->Ternary->isset_value($transaction['transaction_time'], date("Y-m-d H:i:s"))?>">
+                                            <input type="hidden" name="transaction_time" value="<?= $this->Ternary->isset_value($transaction['transaction_time'], date("Y-m-d H:i:s"))?>">
+                                        </div>
+                                        <div class="form-group col-md-4 col-xlg-4">
+                                            <input type="checkbox" class="form-check-input" id="is_paid_off" name="is_paid_off" <?= $transaction['is_paid_off'] ? 'checked' : '' ?> >
+                                            <label class="form-check-label" for="is_paid_off"> <b> LUNAS </b> </label>
+                                        </div>
                                     </div>
 
                                     <div class="form-group col-md-4 col-xlg-4">

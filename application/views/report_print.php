@@ -4,10 +4,6 @@
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
-    <div class="preloader">
-        <svg class="circular" viewBox="25 25 50 50">
-            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
-    </div>
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
@@ -15,17 +11,12 @@
         <!-- ============================================================== -->
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
-        
-        <?php $this->view('navbar/top_navbar'); ?>
-        
         <!-- ============================================================== -->
         <!-- End Topbar header -->
         <!-- ============================================================== -->
         <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
-        
-        <?php $this->view('navbar/left_navbar'); ?>
 
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
@@ -33,15 +24,19 @@
         <!-- ============================================================== -->
         <!-- Page wrapper  -->
         <!-- ============================================================== -->
-        <div class="page-wrapper">
+        <div class="">
+            <!-- Alert  -->
+            <!-- ============================================================== -->
+            <!-- End Alert  -->
+            <!-- ============================================================== -->
+            
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
-            <div class="container-fluid">
+            <div class="">
                 <!-- ============================================================== -->
                 <!-- Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
-                <?php $this->view('filter/'.$filter['filter_search']); ?>
                 <!-- ============================================================== -->
                 <!-- End Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
@@ -51,23 +46,47 @@
                 <!-- Row -->
                 
                 <div class="row">
-                    <!-- column -->
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-block">
-                                <div class="table-responsive">
-                                    <table class="table myTable">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Tanggal</th>
-                                                <th>Keterangan</th>
-                                                <th>Pemasukan (Rp)</th>
-                                                <th>Pengeluaran (Rp)</th>
-                                                <th>Balance (Rp)</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                    <div class="col-md-12">
+                        <div class="card card-body printableArea">
+                            <div class="row">
+                                <div class="col-7">
+                                    <div class="pull-left">
+                                        <address style="margin-left: 0px;">
+                                            <h4>
+                                                Penggilingan Batu
+                                                <i class="fa fa-print" onclick="window.print()" id="print-id" data-toggle="tooltip" title="Click disini untuk cetak laporan" style="cursor: pointer;"> </i> 
+                                            </h4>
+                                            <h1><b class="text-danger">NOYKIMA</b></h1>
+                                            <p class="text-muted ml-1">
+                                                Jl. Trunojoyo Km. 3 Ds. Klecorejo, Caruban
+                                                <br>
+                                                Telp. (0351) 388383
+                                            </p>
+                                        </address>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="pull-right text-right">
+                                        <address>
+                                            <h4><?= $report_title ?></h4>
+                                            <h3 class="font-bold"><?= $report_time ?></h3>
+                                        </address>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="table-responsive mt-3" style="clear: both;">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">#</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Keterangan</th>
+                                                    <th>Pemasukan (Rp)</th>
+                                                    <th>Pengeluaran (Rp)</th>
+                                                    <th>Balance (Rp)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
                                             <?php
                                             $total_income = 0;
                                             $total_expense = 0;
@@ -87,7 +106,7 @@
                                                 }
                                             ?>
                                             <tr>
-                                                <td> <?= $key+1 ?> </td>
+                                                <td class="text-center"> <?= $key+1 ?> </td>
                                                 <td> <?= $this->Converter->to_indonesia_date_full($value['date']) ?> </td>
                                                 <td> <?= $value['description'] . $additional_info ?> </td>
                                                 <td> <?= $this->Converter->to_rupiah($value['total_income']) ?> </td>
@@ -96,16 +115,30 @@
                                             </tr>
                                             <?php } ?>
                                             <thead>
-                                            <tr>
-                                                <td>#</td>
-                                                <td class="" colspan="2">Jumlah</td>
-                                                <td class=""><?= $this->Converter->to_rupiah($total_income) ?></td>
-                                                <td class=""><?= $this->Converter->to_rupiah($total_expense) ?></td>
-                                                <td class=""><?= $this->Converter->to_rupiah($balance) ?></td>
-                                            </tr>
-                                        </thead>
+                                                <tr>
+                                                    <td class="text-center">#</td>
+                                                    <td class="" colspan="2">Jumlah</td>
+                                                    <td class=""><?= $this->Converter->to_rupiah($total_income) ?></td>
+                                                    <td class=""><?= $this->Converter->to_rupiah($total_expense) ?></td>
+                                                    <td class=""><?= $this->Converter->to_rupiah($balance) ?></td>
+                                                </tr>
+                                            </thead>
                                         </tbody>
-                                    </table>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="clearfix"></div>
+                                    <hr>
+                                    <div class="text-center">
+                                        <p>
+                                            Dicetak oleh,
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <b> <?= $user_full_name ?> </b>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -124,7 +157,6 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <?php $this->view('navbar/buttom_navbar'); ?>
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->
@@ -139,9 +171,9 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-
-    <?php $this->view('side/footer'); ?>
-
+    <script src="<?= base_url()?>asset/plugins/jquery/jquery.min.js"></script>
+    <script src="<?= base_url()?>asset/plugins/bootstrap/js/tether.min.js"></script>
+    <script src="<?= base_url()?>asset/plugins/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

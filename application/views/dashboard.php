@@ -71,7 +71,7 @@
                                     </div>
                                     <div class="ml-2 align-self-center">
                                         <h3 class="mb-0 font-weight-light"><?= $total_income ?></h3>
-                                        <h5 class="text-muted mb-0">Total Pemasukan Bulan ini</h5>
+                                        <h5 class="text-muted mb-0">Total Pendapatan Bulan ini</h5>
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                                         <i class="mdi mdi-cart-outline"></i></div>
                                     <div class="ml-2 align-self-center">
                                         <h3 class="mb-0 font-weight-light"><?= $total_trx ?></h3>
-                                        <h5 class="text-muted mb-0">Jumlah Transaksi Bulan ini</h5>
+                                        <h5 class="text-muted mb-0">Transaksi Lunas Bulan ini</h5>
                                     </div>
                                 </div>
                             </div>
@@ -136,13 +136,13 @@
                                     <div class="col-12">
                                         <div class="d-flex flex-wrap">
                                             <div>
-                                                <h3 class="card-title">Sekilas Penjualan</h3>
+                                                <h3 class="card-title">Sekilas Pemasukan & Pengeluaran</h3>
                                                 <h6 class="card-subtitle">Data ini diambil selama <b style="font-weight: bold !important;">7 hari</b> terakhir dari hari ini</h6> 
                                             </div>
                                             <div class="ml-auto">
                                                 <ul class="list-inline">
                                                     <li>
-                                                        <h6 class="text-muted  text-info"><i class="fa fa-circle font-10 m-r-10"></i>Penjualan</h6> </li>
+                                                        <h6 class="text-muted  text-info"><i class="fa fa-circle font-10 m-r-10"></i>Pemasukan</h6> </li>
                                                     <li>
                                                         <h6 class="text-muted text-success"><i class="fa fa-circle font-10 m-r-10 "></i>Pengeluaran</h6> </li>
                                                 </ul>
@@ -169,7 +169,7 @@
                             <div class="card-block text-center ">
                                 <ul class="list-inline m-b-0">
                                     <li>
-                                        <h6 class="text-muted text-info"><i class="fa fa-circle font-10 m-r-10 "></i>Penjualan</h6> 
+                                        <h6 class="text-muted text-info"><i class="fa fa-circle font-10 m-r-10 "></i>Pemasukan</h6> 
                                         <h5 id="total-income-idr-id"></h5>
                                     </li>
                                     <li>

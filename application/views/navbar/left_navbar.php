@@ -8,6 +8,8 @@
                 </li>
                 <li> <a class="waves-effect waves-dark <?= $active_page == 'transaction' ? ' active' : '' ?>" href="<?= base_url() ?>transaksi" aria-expanded="false"><i class="mdi mdi-cart"></i><span class="hide-menu">Transaksi</span></a>
                 </li>
+                <li> <a class="waves-effect waves-dark <?= $active_page == 'income' ? ' active' : '' ?>" href="<?= base_url() ?>pemasukan" aria-expanded="false"><i class="mdi mdi-square-inc-cash"></i><span class="hide-menu">Pemasukan</span></a>
+                </li>
                 <li> <a class="waves-effect waves-dark <?= $active_page == 'expense' ? ' active' : '' ?>" href="<?= base_url() ?>pengeluaran" aria-expanded="false"><i class="mdi mdi-cash-multiple"></i><span class="hide-menu">Pengeluaran</span></a>
                 </li>
                 <!-- <li> <a class="waves-effect waves-dark <?= $active_page == 'report' ? ' active' : '' ?>" href="<?= base_url() ?>laporan" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Laporan</span></a>

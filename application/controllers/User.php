@@ -37,6 +37,7 @@ class User extends My_Controller {
 	private function set_session($data) {
 		$userdata = array(
 			'user_id'   => $data['user_id'],
+			'gender'    => $data['gender'],
 			'username'  => $data['username'], 
 			'full_name' => $data['full_name'], 
 			'logged_in' => TRUE

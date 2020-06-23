@@ -7,6 +7,10 @@ class TransactionModel extends CI_Model {
             $this->db->where('transaction_id', $filter['transaction_id']);
         }
 
+        if (!empty($filter['is_paid_off'])) {
+            $this->db->where('is_paid_off', $filter['is_paid_off']);
+        }
+
         if (!empty($filter['status'])) {
             $this->db->where('status', $filter['status']);
         }
@@ -22,6 +26,10 @@ class TransactionModel extends CI_Model {
         if (!empty($filter['transaction_month']) && !empty($filter['transaction_year'])) {
             $this->db->where('month(transaction_time)', $filter['transaction_month']);
             $this->db->where('year(transaction_time)', $filter['transaction_year']);
+        }
+
+        if (!empty($filter['is_paid_off'])) {
+            $this->db->where('is_paid_off', $filter['is_paid_off']);
         }
 
         if (!empty($filter['status'])) {

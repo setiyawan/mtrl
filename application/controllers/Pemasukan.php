@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 require_once APPPATH.'/controllers/MyController.php';
 
-class Pengeluaran extends My_Controller {
+class Pemasukan extends My_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -34,18 +34,18 @@ class Pengeluaran extends My_Controller {
     	
     	$filter = array(
     		'status' => 1,
-    		'cashflow_type' => 2,
+    		'cashflow_type' => 1,
     		'date' => $this->Ternary->isempty_value($get['date'], date('Y-m-d')),
     	);
 
     	$data = array(
-    		'active_page' => 'expense',
-    		'page_title' => 'Pengeluaran',
+    		'active_page' => 'income',
+    		'page_title' => 'Pemasukan',
 			'parent_page' => 'Home',
-			'page_child' => 'Data Pengeluaran',
+			'page_child' => 'Data Pemasukan',
 			'parent_page_url' => base_url(),
 			'filter' => $filter,
-			'cashflow_type' => 'pengeluaran',
+			'cashflow_type' => 'pemasukan',
     		'cashflow' => $this->CashflowModel->get_cashflow($filter)
     	);
 		$this->load->view('cashflow', $data);
@@ -54,29 +54,29 @@ class Pengeluaran extends My_Controller {
 	public function detail() {
 		$id = $this->input->get('id', TRUE);
 		if (empty($id)) {
-			redirect(base_url().'pengeluaran');
+			redirect(base_url().'pemasukan');
 		}
 
     	$filter = array(
     		'cashflow_id' => $id,
     		'status' => 1,
-    		'cashflow_type' => 2,
+    		'cashflow_type' => 1,
     	);
 
 		$cashflow_detail = $this->CashflowModel->get_cashflow($filter)[0];
 		$data = array(
-			'active_page' => 'expense', 
+			'active_page' => 'income', 
 			'form_action' => 'update',
-			'page_title' => 'Pengeluaran Detail',
-			'parent_page' => 'Pengeluaran',
+			'page_title' => 'Pemasukan Detail',
+			'parent_page' => 'Pemasukan',
 			'page_child' => 'Detail',
-			'parent_page_url' => base_url() . 'pengeluaran',
-			'cashflow_type' => 'pengeluaran',
+			'parent_page_url' => base_url() . 'pemasukan',
+			'cashflow_type' => 'pemasukan',
 			'cashflow' => $cashflow_detail
 		);
 
 		if ($cashflow_detail['status'] != 1) {
-			redirect(base_url().'pengeluaran');
+			redirect(base_url().'pemasukan');
 		}
 
 		$this->load->view('cashflow_form', $data);
@@ -84,13 +84,13 @@ class Pengeluaran extends My_Controller {
 
 	public function tambah() {
 		$data = array(
-			'active_page' => 'expense', 
+			'active_page' => 'income', 
 			'form_action' => 'add',
-			'page_title' => 'Tambah Pengeluaran Baru',
-			'parent_page' => 'Pengeluaran',
+			'page_title' => 'Tambah Pemasukan Baru',
+			'parent_page' => 'Pemasukan',
 			'page_child' => 'Tambah Data',
-			'cashflow_type' => 'pengeluaran',
-			'parent_page_url' => base_url() . 'pengeluaran'
+			'cashflow_type' => 'pemasukan',
+			'parent_page_url' => base_url() . 'pemasukan'
 		);
 
 		$this->load->view('cashflow_form', $data);
@@ -106,14 +106,14 @@ class Pengeluaran extends My_Controller {
 			'amount' => $post['amount'],
 			'description' => $post['description'],
 			'status' => 1,
-			'cashflow_type' => 2,
+			'cashflow_type' => 1,
 			'create_by' => $this->get_userid()
 		);
 
 		$result = $this->CashflowModel->add_cashflow($data);
 		$cashflow_id = $this->db->insert_id();
 
-		redirect(base_url().'pengeluaran/detail?id='.$cashflow_id);
+		redirect(base_url().'pemasukan/detail?id='.$cashflow_id);
 	}
 
 	public function update() {
@@ -131,9 +131,9 @@ class Pengeluaran extends My_Controller {
 
 		$result = $this->CashflowModel->update_cashflow($data, $cashflow_id);
 
-		$this->set_alert('success', 'Data Pengeluaran berhasil diperbarui');
+		$this->set_alert('success', 'Data Pemasukan berhasil diperbarui');
 
-		redirect(base_url().'pengeluaran/detail?id='.$cashflow_id);
+		redirect(base_url().'pemasukan/detail?id='.$cashflow_id);
 	}
 
 	public function delete() {
@@ -148,6 +148,6 @@ class Pengeluaran extends My_Controller {
 
 		$result = $this->CashflowModel->update_cashflow($data, $cashflow_id);
 
-		redirect(base_url().'pengeluaran');
+		redirect(base_url().'pemasukan');
 	}
 }
