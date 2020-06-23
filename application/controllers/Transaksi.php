@@ -43,6 +43,7 @@ class Transaksi extends My_Controller {
 			'parent_page' => 'Home',
 			'page_child' => 'Data Transaksi',
 			'parent_page_url' => base_url(),
+			'filter' => $filter,
     		'transaction' => $this->TransactionModel->get_transaction_dashboard($filter)
     	);
     	

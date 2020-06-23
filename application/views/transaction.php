@@ -53,7 +53,7 @@
                         </ol>
                     </div>
                     <div class="col-md-2 col-2 align-self-center">
-                        <input type="date" name="date" class="form-control form-control-line" value="<?= $this->Ternary->isset_value($filter['date'], date("Y-m-d"))?>">
+                        <input type="date" name="date" class="form-control form-control-line" value="<?= $this->Ternary->isset_value($filter['transaction_date'], date("Y-m-d"))?>">
                     </div>
                     <div class="col-md-1 col-1 align-self-center">
                         <button type="submit" class="btn waves-effect btn-rounded btn-warning"> <i class="ti-search"></i> Cari </button>
