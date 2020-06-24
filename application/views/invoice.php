@@ -63,7 +63,7 @@
                                             <p class="text-muted ml-1">
                                                 Jl. Trunojoyo Km. 3 Ds. Klecorejo, Caruban
                                                 <br>
-                                                Telp. (0351) 388383
+                                                Telp. 081233982098
                                             </p>
                                         </address>
                                     </div>
