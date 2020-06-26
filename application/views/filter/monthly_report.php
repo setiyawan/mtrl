@@ -2,7 +2,7 @@
     <div class="row page-titles">
         <div class="col-md-7 col-7 align-self-center">
             <h3 class="text-themecolor"><?= $page_title ?>
-                <button class="btn btn-success" data-toggle="tooltip" title="" onclick="window.open('<?= base_url() ?>laporan/cetak?type=monthly&month=<?= $filter['month']?>&year=<?= $filter['year']?>')" data-original-title="Cetak invoice"><i class="mdi mdi-printer"></i>cetak</button>
+                <button class="btn btn-success" data-toggle="tooltip" title="" onclick="window.open('<?= base_url() ?>laporan/cetak?type=monthly&month=<?= $filter['month']?>&year=<?= $filter['year']?>')" data-original-title="Cetak Laporan"><i class="mdi mdi-printer"></i>cetak</button>
             </h3>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?= $parent_page_url ?>"><?= $parent_page ?></a></li>

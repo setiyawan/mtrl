@@ -48,6 +48,10 @@ class User extends My_Controller {
 
 	// GET TRANSACTION
 	public function login() {
+		if ($this->is_logged_in()) {
+			redirect(base_url().'dashboard');
+		}
+
 		$this->load->view('login');
 	}
 
@@ -76,6 +80,7 @@ class User extends My_Controller {
 
 	public function do_update_password() {
 		$this->must_login();
+		
 		$user_id = $this->get_session_by_id('user_id');
 		$username = $this->get_session_by_id('username');
 
