@@ -78,7 +78,7 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Tgl Pengeluaran</th>
+                                                <th>Tgl <?= $page_title ?></th>
                                                 <th>Deskripsi</th>
                                                 <th>Nominal</th>
                                                 <th>Opsi</th>
