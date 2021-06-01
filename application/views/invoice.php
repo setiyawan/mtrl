@@ -48,17 +48,17 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-body printableArea">
-                            <h3>
+                            <h3 style="font-family: Arial;">
                                 #<?= $transaction['invoice_code'] ?> &nbsp <i class="fa fa-print" onclick="window.print()" id="print-id" data-toggle="tooltip" title="Click disini untuk cetak invoice" style="cursor: pointer;"> </i> 
                                 <span class="pull-right">
-                                    <p class="text-muted" style="text-align: right; font-size: 12px; margin-top: -10px;"> <i class="fa fa-calendar"> </i> Caruban, <?= $this->Converter->to_indonesia_date_full($transaction['transaction_time']) ?></p>   
+                                    <p class="text-muted" style="text-align: right; font-size: 12px; margin-top: -10px; font-family: Arial"> <i class="fa fa-calendar"> </i> Caruban, <?= $this->Converter->to_indonesia_date_full($transaction['transaction_time']) ?></p>   
                                 </span>
                             </h3>
                             <div class="row">
                                 <div class="col-7">
                                     <div class="pull-left">
                                         <address style="margin-left: 0px;">
-                                            <h4>Penggilingan Batu</h4>
+                                            <h4 style="font-family: Arial;">Penggilingan Batu</h4>
                                             <h1><img src="<?= base_url()?>asset/images/sandi-putra-logo2.png" width="50%"></h1>
                                             <p class="text-muted ml-1">
                                                 Jl. Trunojoyo Km. 3 Ds. Klecorejo, Caruban
@@ -71,8 +71,8 @@
                                 <div class="col-5">
                                     <div class="pull-right text-right">
                                         <address>
-                                            <h4>Kepada yth,</h4>
-                                            <h3 class="font-bold"><?= $transaction['receiver_name'] ?></h3>
+                                            <h4 style="font-family: Arial;">Kepada yth,</h4>
+                                            <h3 class="font-bold" style="font-family: Arial;"><?= $transaction['receiver_name'] ?></h3>
                                         </address>
                                     </div>
                                 </div>

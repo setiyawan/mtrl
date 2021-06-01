@@ -52,7 +52,7 @@
                                 <div class="col-7">
                                     <div class="pull-left">
                                         <address style="margin-left: 0px;">
-                                            <h4>
+                                            <h4 style="font-family: Arial;">
                                                 Penggilingan Batu
                                                 <i class="fa fa-print" onclick="window.print()" id="print-id" data-toggle="tooltip" title="Click disini untuk cetak laporan" style="cursor: pointer;"> </i> 
                                             </h4>
@@ -68,8 +68,8 @@
                                 <div class="col-5">
                                     <div class="pull-right text-right">
                                         <address>
-                                            <h4><?= $report_title ?></h4>
-                                            <h3 class="font-bold"><?= $report_time ?></h3>
+                                            <h4 style="font-family: Arial;"><?= $report_title ?></h4>
+                                            <h3 class="font-bold" style="font-family: Arial;"><?= $report_time ?></h3>
                                         </address>
                                     </div>
                                 </div>
