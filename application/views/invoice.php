@@ -7,7 +7,7 @@
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <div id="main-wrapper">
+    <div id="main-wrapper" style="max-width: 980px; margin: auto;">
         <!-- ============================================================== -->
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
@@ -59,7 +59,7 @@
                                     <div class="pull-left">
                                         <address style="margin-left: 0px;">
                                             <h4>Penggilingan Batu</h4>
-                                            <h1><b class="text-danger">NOYKIMA</b></h1>
+                                            <h1><img src="<?= base_url()?>asset/images/sandi-putra-logo2.png" width="50%"></h1>
                                             <p class="text-muted ml-1">
                                                 Jl. Trunojoyo Km. 3 Ds. Klecorejo, Caruban
                                                 <br>

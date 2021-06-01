@@ -86,7 +86,9 @@
                                         </div>
                                         <div class="form-group col-md-4 col-xlg-4">
                                             <input type="checkbox" class="form-check-input" id="is_paid_off" name="is_paid_off" <?= $transaction['is_paid_off'] ? 'checked' : '' ?> >
-                                            <label class="form-check-label" for="is_paid_off"> <b> LUNAS </b> </label>
+                                            <label class="form-check-label" for="is_paid_off"> <b> L U N A S </b> </label>
+                                            <!-- <input type="datetime-local" required  disabled class="form-control form-control-line" value="<?= $this->Ternary->isset_value($transaction['paidoff_time'], '')?>"> -->
+                                            <!-- <input type="hidden" name="paidoff_time" value="<?= $this->Ternary->isset_value($transaction['paidoff_time'], '')?>"> -->
                                         </div>
                                     </div>
 
@@ -147,7 +149,7 @@
                                     <h6 class="card-subtitle m-t-10">Total Pembayaran</h6>
                                     <h1 class="card-title" id="resume-total-price-id"><?= $this->Converter->to_rupiah($this->Ternary->isset_value($transaction['total_price']))?></h1>
                                     <div class="row text-center justify-content-md-center">
-                                        <div class="col-12"><a href="javascript:void(0)" class="link"><i class="mdi mdi-account"></i><font class="font-medium card-subtitle"><?= $this->Ternary->isset_value($transaction['update_by'], $transaction['create_by']) ?></font></a></div>
+                                        <div class="col-12"><a href="javascript:void(0)" class="link"><i class="mdi mdi-account"></i><font class="font-medium card-subtitle"><?= $user_full_name ?></font></a></div>
                                         <div class="col-12"><a href="javascript:void(0)" class="link"><i class="mdi mdi-update"></i><font class="font-medium card-subtitle"><?= $this->Converter->to_indonesia_timestamp($this->Ternary->isset_value($transaction['update_time'], $transaction['create_time']))?></font></a></div>
                                     </div>
                                 </center>

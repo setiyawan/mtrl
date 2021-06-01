@@ -113,6 +113,8 @@ class Pemasukan extends My_Controller {
 		$result = $this->CashflowModel->add_cashflow($data);
 		$cashflow_id = $this->db->insert_id();
 
+		$this->set_alert('success', 'Data Pemasukan berhasil ditambah');
+
 		redirect(base_url().'pemasukan/detail?id='.$cashflow_id);
 	}
 

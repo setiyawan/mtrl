@@ -6,7 +6,8 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="<?= base_url() ?>">
                <h1>
-                   <b class="text-white">NOYKIMA</b>
+                   <!-- <b class="text-white">NOYKIMA</b> -->
+                   <img src="<?= base_url()?>asset/images/sandi-putra-logo2.png" width="80%">
                </h1>
              </a>
         </div>

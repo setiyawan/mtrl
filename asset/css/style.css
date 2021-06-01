@@ -8009,3 +8009,7 @@ table>thead{
 .modal-header {
   border-bottom: 0px !important;
 }
+
+.printableArea {
+  font-family: Arial !important;
+}
