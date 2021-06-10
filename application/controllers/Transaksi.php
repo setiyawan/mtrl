@@ -39,6 +39,7 @@ class Transaksi extends My_Controller {
 
     	$data = array(
     		'active_page' => 'transaction',
+    		'active_sub_page' => 'daily_transaction',
     		'page_title' => 'Transaksi',
 			'parent_page' => 'Home',
 			'page_child' => 'Data Transaksi',
@@ -50,6 +51,29 @@ class Transaksi extends My_Controller {
 		$this->load->view('transaction', $data);
 	}
 
+	public function belumlunas() {
+    	$get = $this->input->get();
+
+    	$filter = array(
+    		'status' => 1,
+    		'is_paid_off' => 0,
+    		// 'transaction_date' => $this->Ternary->isempty_value($get['date'], date('Y-m-d')),
+    	);
+
+    	$data = array(
+    		'active_page' => 'transaction',
+    		'active_sub_page' => 'unpaid_transaction',
+    		'page_title' => 'Transaksi Belum Lunas',
+			'parent_page' => 'Home',
+			'page_child' => 'Data Transaksi Belum Lunas',
+			'parent_page_url' => base_url(),
+			'filter' => $filter,
+    		'transaction' => $this->TransactionModel->get_transaction_dashboard($filter)
+    	);
+
+		$this->load->view('transaction_unpaid', $data);
+	}
+
 	public function detail() {
 		$filter['transaction_id'] = $this->input->get('id', TRUE);
 		if (empty($filter['transaction_id'])) {
@@ -58,6 +82,8 @@ class Transaksi extends My_Controller {
 		$filter['status'] = 1;
 
 		$data_transaction = $this->TransactionModel->get_transaction($filter)[0];
+		$user = $this->UserModel->get_user_by_id($this->Ternary->isempty_value($data_transaction['update_by'], $data_transaction['create_by']));
+		
 		$data = array(
 			'add_js' => 'custom.transaction',
 			'active_page' => 'transaction', 
@@ -68,7 +94,8 @@ class Transaksi extends My_Controller {
 			'parent_page_url' => base_url() . 'transaksi',
 			'transaction' => $data_transaction,
 			'vehicle' => $this->VehicleModel->get_vehicle($filter),
-			'material' => $this->MaterialModel->get_material($filter)
+			'material' => $this->MaterialModel->get_material($filter),
+			'user_full_name' => $user[0]['full_name']
 		);
 
 		$this->load->view('transaction_form', $data);
@@ -170,7 +197,7 @@ class Transaksi extends My_Controller {
 
 		$result = $this->TransactionModel->update_transaction($data, $transaction_id);
 		if ($result) {
-			$this->set_alert('success', 'Data Transaksi berhasil ditambah');
+			$this->set_alert('success', 'Data Transaksi berhasil diperbarui');
 		}
 
 		redirect(base_url().'transaksi/detail?id='.$transaction_id);

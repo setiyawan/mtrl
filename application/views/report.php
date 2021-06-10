@@ -62,9 +62,12 @@
                                                 <th>No</th>
                                                 <th>Tanggal</th>
                                                 <th>Keterangan</th>
+                                                <th>Volume</th>
+                                                <th>Sopir</th>
                                                 <th>Pemasukan (Rp)</th>
                                                 <th>Pengeluaran (Rp)</th>
                                                 <th>Balance (Rp)</th>
+                                                <th>Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -74,7 +77,7 @@
                                             $balance = 0;
                                             
                                             foreach ($report as $key => $value) { 
-                                                $additional_info = '';
+                                                $volume = '';
                                                 $value['total_income'] = $value['cashflow_type'] == 1 ? $value['cashflow_amount'] : 0;
                                                 $value['total_expense'] = $value['cashflow_type'] == 2 ? $value['cashflow_amount'] : 0;
 
@@ -83,25 +86,29 @@
                                                 $balance = $balance + $value['total_income'] - $value['total_expense'];
                                                 
                                                 if ($value['volume'] > 0) {
-                                                    $additional_info = ' (' . $value['volume'] . ' m<sup>3</sup>)';
+                                                    $volume = $value['volume'] . ' m<sup>3</sup>';
                                                 }
                                             ?>
                                             <tr>
                                                 <td> <?= $key+1 ?> </td>
                                                 <td> <?= $this->Converter->to_indonesia_date_full($value['date']) ?> </td>
-                                                <td> <?= $value['description'] . $additional_info ?> </td>
+                                                <td> <?= $value['description'] ?> </td>
+                                                <td> <?= $volume ?> </td>
+                                                <td> <?= $value['driver_name'] ?> </td>
                                                 <td> <?= $this->Converter->to_rupiah($value['total_income']) ?> </td>
                                                 <td> <?= $this->Converter->to_rupiah($value['total_expense']) ?> </td>
                                                 <td> <?= $this->Converter->to_rupiah($balance) ?> </td>
+                                                <td> <?= $this->TransactionConstant->get_paidoff_status()[$value['is_paid_off']] ?> </td>
                                             </tr>
                                             <?php } ?>
                                             <thead>
                                             <tr>
                                                 <td>#</td>
-                                                <td class="" colspan="2">Jumlah</td>
+                                                <td class="" colspan="4">Jumlah</td>
                                                 <td class=""><?= $this->Converter->to_rupiah($total_income) ?></td>
                                                 <td class=""><?= $this->Converter->to_rupiah($total_expense) ?></td>
                                                 <td class=""><?= $this->Converter->to_rupiah($balance) ?></td>
+                                                <td class=""></td>
                                             </tr>
                                         </thead>
                                         </tbody>

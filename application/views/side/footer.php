@@ -23,6 +23,7 @@
 <script src="<?= base_url()?>asset/plugins/c3-master/c3.min.js"></script>
 
 <script src="<?= base_url()?>asset/js/select2.min.js"></script>
+<script src="<?= base_url()?>asset/js/jquery.dataTables.min.js"></script>
 
 <?php if (!empty($add_js)) { ?>
 <script src="<?php echo base_url() ?>asset/js/<?= $add_js ?>.js"></script>
@@ -54,5 +55,17 @@
 	  rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
 	  return  'Rp ' + rupiah;
 	}
+
+	$(document).ready(function() {
+	    $('.myTable').DataTable( {
+	        autoWidth: false,
+	        columnDefs: [
+	            {
+	                targets: ['_all'],
+	                className: 'mdc-data-table__cell'
+	            }
+	        ]
+	    } );
+	} )
 
 </script>

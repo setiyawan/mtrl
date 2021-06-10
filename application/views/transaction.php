@@ -79,10 +79,12 @@
                                                 <th>No</th>
                                                 <th>Tgl Transaksi</th>
                                                 <th>No Nota</th>
-                                                <th>Jenis Material</th>
+                                                <th>Material</th>
+                                                <th>Volume</th>
+                                                <th>Sopir</th>
                                                 <th>Nopol Kendaraan</th>
                                                 <th>Penerima</th>
-                                                <th>Total Harga</th>
+                                                <th>Harga</th>
                                                 <th>Status</th>
                                                 <th>Opsi</th>
                                             </tr>
@@ -94,6 +96,8 @@
                                                 <td> <?= $this->Converter->to_indonesia_date($value['transaction_time']) ?> </td>
                                                 <td> <?= $value['invoice_code'] ?> </td>
                                                 <td> <?= $value['material_name'] ?> </td>
+                                                <td> <?= $value['volume'] ?> m<sup>3</sup> </td>
+                                                <td> <?= $value['driver_name'] ?> </td>
                                                 <td> <?= $value['license_plate'] ?> </td>
                                                 <td> <?= $value['receiver_name'] ?> </td>
                                                 <td> <?= $this->Converter->to_rupiah($value['total_price']) ?> </td>

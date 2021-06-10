@@ -33,7 +33,9 @@ class My_Controller extends CI_Controller {
 
         $this->load->model('constant/TimeConstant'); 
         $this->load->model('constant/UserConstant');
+        $this->load->model('constant/TransactionConstant');
 
+        $this->load->model('UserModel');
         $this->load->model('MaterialModel');
         $this->load->model('VehicleModel');
         $this->load->model('TransactionModel');

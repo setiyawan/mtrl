@@ -3,11 +3,13 @@
 class TransactionModel extends CI_Model {
 
     public function get_transaction($filter=[]) {
+        // var_dump($filter);
+        // die();
         if (!empty($filter['transaction_id'])) {
             $this->db->where('transaction_id', $filter['transaction_id']);
         }
 
-        if (!empty($filter['is_paid_off'])) {
+        if (isset($filter['is_paid_off'])) {
             $this->db->where('is_paid_off', $filter['is_paid_off']);
         }
 
@@ -15,6 +17,7 @@ class TransactionModel extends CI_Model {
             $this->db->where('status', $filter['status']);
         }
 
+        $this->db->order_by('transaction_id', 'asc');
         return  $this->db->get('transaction')->result_array();
     }
 
@@ -28,7 +31,7 @@ class TransactionModel extends CI_Model {
             $this->db->where('year(transaction_time)', $filter['transaction_year']);
         }
 
-        if (!empty($filter['is_paid_off'])) {
+        if (isset($filter['is_paid_off'])) {
             $this->db->where('is_paid_off', $filter['is_paid_off']);
         }
 
@@ -37,6 +40,7 @@ class TransactionModel extends CI_Model {
         }
 
         $this->db->join('material m', 'm.material_id = t.material_id');
+        $this->db->order_by('transaction_id', 'asc');
         return  $this->db->get('transaction t')->result_array();
     }
 
@@ -48,6 +52,7 @@ class TransactionModel extends CI_Model {
         $this->db->select('t.*, m.material_name, v.length, v.height, v.width', FALSE);
         $this->db->join('material m', 'm.material_id = t.material_id');
         $this->db->join('vehicle v', 'v.vehicle_id = t.vehicle_id');
+        $this->db->order_by('transaction_id', 'asc');
         return  $this->db->get('transaction t')->result_array();
     }
 

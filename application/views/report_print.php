@@ -7,7 +7,7 @@
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <div id="main-wrapper">
+    <div id="main-wrapper" style="max-width: 1200px; margin: auto;">
         <!-- ============================================================== -->
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
@@ -52,11 +52,11 @@
                                 <div class="col-7">
                                     <div class="pull-left">
                                         <address style="margin-left: 0px;">
-                                            <h4>
+                                            <h4 style="font-family: Arial;">
                                                 Penggilingan Batu
                                                 <i class="fa fa-print" onclick="window.print()" id="print-id" data-toggle="tooltip" title="Click disini untuk cetak laporan" style="cursor: pointer;"> </i> 
                                             </h4>
-                                            <h1><b class="text-danger">NOYKIMA</b></h1>
+                                            <h1><img src="<?= base_url()?>asset/images/sandi-putra-logo2.png" width="50%"></h1>
                                             <p class="text-muted ml-1">
                                                 Jl. Trunojoyo Km. 3 Ds. Klecorejo, Caruban
                                                 <br>
@@ -68,8 +68,8 @@
                                 <div class="col-5">
                                     <div class="pull-right text-right">
                                         <address>
-                                            <h4><?= $report_title ?></h4>
-                                            <h3 class="font-bold"><?= $report_time ?></h3>
+                                            <h4 style="font-family: Arial;"><?= $report_title ?></h4>
+                                            <h3 class="font-bold" style="font-family: Arial;"><?= $report_time ?></h3>
                                         </address>
                                     </div>
                                 </div>
@@ -81,9 +81,12 @@
                                                     <th class="text-center">#</th>
                                                     <th>Tanggal</th>
                                                     <th>Keterangan</th>
+                                                    <th>Volume</th>
+                                                    <th>Sopir</th>
                                                     <th>Pemasukan (Rp)</th>
                                                     <th>Pengeluaran (Rp)</th>
                                                     <th>Balance (Rp)</th>
+                                                    <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -93,7 +96,7 @@
                                             $balance = 0;
                                             
                                             foreach ($report as $key => $value) { 
-                                                $additional_info = '';
+                                                $volume = '';
                                                 $value['total_income'] = $value['cashflow_type'] == 1 ? $value['cashflow_amount'] : 0;
                                                 $value['total_expense'] = $value['cashflow_type'] == 2 ? $value['cashflow_amount'] : 0;
 
@@ -102,25 +105,29 @@
                                                 $balance = $balance + $value['total_income'] - $value['total_expense'];
                                                 
                                                 if ($value['volume'] > 0) {
-                                                    $additional_info = ' (' . $value['volume'] . ' m<sup>3</sup>)';
+                                                    $volume = $value['volume'] . ' m<sup>3</sup>';
                                                 }
                                             ?>
-                                            <tr>
-                                                <td class="text-center"> <?= $key+1 ?> </td>
-                                                <td> <?= $this->Converter->to_indonesia_date_full($value['date']) ?> </td>
-                                                <td> <?= $value['description'] . $additional_info ?> </td>
-                                                <td> <?= $this->Converter->to_rupiah($value['total_income']) ?> </td>
-                                                <td> <?= $this->Converter->to_rupiah($value['total_expense']) ?> </td>
-                                                <td> <?= $this->Converter->to_rupiah($balance) ?> </td>
-                                            </tr>
+                                                <tr>
+                                                    <td class="text-center"> <?= $key+1 ?> </td>
+                                                    <td> <?= $this->Converter->to_indonesia_date_full($value['date']) ?> </td>
+                                                    <td> <?= $value['description'] ?> </td>
+                                                    <td> <?= $volume ?> </td>
+                                                    <td> <?= $value['driver_name'] ?> </td>
+                                                    <td> <?= $this->Converter->to_rupiah($value['total_income']) ?> </td>
+                                                    <td> <?= $this->Converter->to_rupiah($value['total_expense']) ?> </td>
+                                                    <td> <?= $this->Converter->to_rupiah($balance) ?> </td>
+                                                    <td> <?= $this->TransactionConstant->get_paidoff_status()[$value['is_paid_off']] ?> </td>
+                                                </tr>
                                             <?php } ?>
                                             <thead>
                                                 <tr>
                                                     <td class="text-center">#</td>
-                                                    <td class="" colspan="2">Jumlah</td>
+                                                    <td class="" colspan="4">Jumlah</td>
                                                     <td class=""><?= $this->Converter->to_rupiah($total_income) ?></td>
                                                     <td class=""><?= $this->Converter->to_rupiah($total_expense) ?></td>
                                                     <td class=""><?= $this->Converter->to_rupiah($balance) ?></td>
+                                                    <td class=""></td>
                                                 </tr>
                                             </thead>
                                         </tbody>
